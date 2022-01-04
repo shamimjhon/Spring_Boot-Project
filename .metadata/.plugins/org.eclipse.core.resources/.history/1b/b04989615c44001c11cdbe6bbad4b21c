@@ -1,0 +1,91 @@
+package com.exam.jpacrud;
+
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employees")
+public class Employee {
+	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,  generator = "emp_Check")
+	@SequenceGenerator(name = "emp_Check", initialValue = 3232, allocationSize = 1,  sequenceName = "emp_checkSqu")
+	int empId;
+	private String empName;
+	private Date joinDate;
+	private String empDesignation;
+	private String empSalary;
+	private String empEmail;
+	
+	private int chekno;
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Employee(int empId, String empName, Date joinDate, String empDesignation, String empSalary, String empEmail,
+			int chekno) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.joinDate = joinDate;
+		this.empDesignation = empDesignation;
+		this.empSalary = empSalary;
+		this.empEmail = empEmail;
+		this.chekno = chekno;
+	}
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public Date getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+	public String getEmpDesignation() {
+		return empDesignation;
+	}
+	public void setEmpDesignation(String empDesignation) {
+		this.empDesignation = empDesignation;
+	}
+	public String getEmpSalary() {
+		return empSalary;
+	}
+	public void setEmpSalary(String empSalary) {
+		this.empSalary = empSalary;
+	}
+	public String getEmpEmail() {
+		return empEmail;
+	}
+	public void setEmpEmail(String empEmail) {
+		this.empEmail = empEmail;
+	}
+	public int getChekno() {
+		return chekno;
+	}
+	public void setChekno(int chekno) {
+		this.chekno = chekno;
+	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", joinDate=" + joinDate + ", empDesignation="
+				+ empDesignation + ", empSalary=" + empSalary + ", empEmail=" + empEmail + ", chekno=" + chekno + "]";
+	}
+
+	
+}

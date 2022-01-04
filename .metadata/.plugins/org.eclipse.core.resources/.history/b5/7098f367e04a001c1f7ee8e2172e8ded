@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/mainbase:: layout(~{:: section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="">
+		<div class="row">
+			<div class="col-12">
+				<div class="card ">
+					<div class="card-body ">
+						<h5 class="card-title text-muted p-0">CHECK-OUT</h5>
+
+						<div class="container border rounded-3 border-success  "
+							style="width: 85%">
+
+							<h3 class="text-center">
+								<span class="badge rounded-pill bg-primary w-25 mt-2 mb-2">POS</span>
+							</h3>
+							<form th:action="@{/fornt-office-data}" method="post">
+								<!-- first row -->
+								<div class="row">
+									<!-- first sub row -->
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text " style="width: 40%;">Room
+												No</span> <input th:with="room=this.value" id="rno" type="number"
+												class="form-control" name="roomNo" th:value="${checkin.guestRoomNo}">
+										</div>
+									</div>
+									<div class="col-md-4"></div>
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Total
+												Rent </span> <input type="number" class="form-control"
+												aria-label="Sizing example input" name="roomm"
+												th:value="${checkin.guestTotalRent}">
+										</div>
+									</div>
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Reg
+												No </span> <input type="number" class="form-control"
+												aria-label="Sizing example input" 
+												 name="regNo" th:value="${checkin.guestRegNo}">
+										</div>
+									</div>
+									
+									<div class="col-md-4"></div>
+									<!-- second sub row -->
+								<!-- 	<div class="col-md-4 text-center">
+										<button type="submit"  class="btn btn-warning fw-bold " style="width: 100px;">Search</button>
+									</div> -->
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Others
+												Bill</span> <input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="othersBill" th:value="${checkin.guestOtherServices}">
+										</div>
+									</div>
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Guest
+												Name</span> <input type="text" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="guestName" th:value="${checkin.guestName}">
+										</div>
+									</div>
+									<div class="col-md-4 text-center">
+										<button class="btn btn-warning fw-bold " style="width: 100px;">Save</button>
+
+									</div>
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Sub
+												Total </span> <input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="subTotal" >
+										</div>
+									</div>
+
+									<!-- end second sub row -->
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Check-in
+											</span> <input type="date" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="checkIn" th:value="${checkin.guestCheckin}">
+										</div>
+									</div>
+									<div class="col-md-4 text-center">
+										<button class="btn btn-warning fw-bold " style="width: 100px;">Print</button>
+
+									</div>
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Discount
+											</span> <input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="discount">
+										</div>
+									</div>
+
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Check-out
+											</span> <input type="date" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="checkOut" th:value="${checkin.guestCheckout}">
+										</div>
+									</div>
+
+									<div class="col-md-4 text-center">
+										<a th:href="@{/check-out-Home}"
+											class="btn btn-warning fw-bold" style="width: 100px;">Home</a>
+									</div>
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Grand
+												Total </span> <input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="grandTotal">
+										</div>
+									</div>
+
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Total
+												Days</span> <input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="totalDays" th:value="${checkin.guestStayingDays}">
+										</div>
+									</div>
+
+									<div class="col-md-4"></div>
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Payment
+											</span> <input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="payment">
+										</div>
+									</div>
+									<div class="mb-2 col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Room
+												Rate</span> <input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default" name="roomRate" th:value="${checkin.guestPerNight}">
+										</div>
+									</div>
+									<div class="col-md-4"></div>
+
+									<div class="col-md-4">
+										<div class="input-group mb-3 ">
+											<span class="input-group-text "
+												id="inputGroup-sizing-default" style="width: 40%;">Change</span>
+											<input type="number" class="form-control"
+												aria-label="Sizing example input" ar
+												ia-describedby="inputGroup-sizing-default"
+												name="changeAmount">
+										</div>
+									</div>
+
+								</div>
+								<!-- End first row  -->
+								<!-- Start second  -->
+							</form>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+package com.exam.hotel.entity;
+
+import java.time.LocalDate;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class GrandioseDailyBasis {
+
+	private LocalDate date;
+	private long subTotal;
+	private long discount;
+	private long grandTotal;
+
+	
+	
+	public GrandioseDailyBasis(LocalDate date, long subTotal, long discount, long grandTotal) {
+		super();
+		this.date = date;
+		this.subTotal = subTotal;
+		this.discount = discount;
+		this.grandTotal = grandTotal;
+	}
+
+	public GrandioseDailyBasis() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public long getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(long subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public long getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(long discount) {
+		this.discount = discount;
+	}
+
+	public long getGrandTotal() {
+		return grandTotal;
+	}
+
+	public void setGrandTotal(long grandTotal) {
+		this.grandTotal = grandTotal;
+	}
+
+}

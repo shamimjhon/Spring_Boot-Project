@@ -1,0 +1,18 @@
+package com.exam.hotel.repository;
+
+import java.sql.Date;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.exam.hotel.entity.RestaurantTransaction;
+
+@Repository
+public interface RestaurantTransactionRepository extends JpaRepository<RestaurantTransaction, Long>{
+	
+	public List<RestaurantTransaction> findAllByOrderByBillNoDesc();
+	
+	public List<RestaurantTransaction> findByTransactionDateBetween(Date startDate, Date endDate);
+
+}

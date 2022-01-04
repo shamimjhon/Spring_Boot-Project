@@ -1,0 +1,48 @@
+package com.exam.hotel.controller;
+
+import java.sql.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.exam.hotel.entity.RestaurantTransaction;
+import com.exam.hotel.repository.RestaurantTransactionRepository;
+
+@Controller
+public class ReportController {
+	@Autowired
+	RestaurantTransactionRepository resttrarep;
+
+	@RequestMapping("/reportForm/{userId}")
+	public String reportForm(@PathVariable("userId") String userId) {
+
+		return "user/report";
+	}
+	
+	@PostMapping("/repoortGenerate")
+	public String reportGenerate(@RequestParam("outletName") String outletName,@RequestParam("reportType") String reportType,@RequestParam("startDate") Date startDate,@RequestParam("endDate") Date endDate, Model model) {
+		
+		if(outletName.equals("Grandiose") && reportType.equals("Days Details")) {
+			List<RestaurantTransaction> transactionReport = resttrarep.findByTransactionDateBetween(startDate, endDate);
+			model.addAttribute("report",transactionReport);
+			
+	 List<Object[]> findTotalSummary = resttrarep.findTotalSummary(startDate, endDate);
+			model.addAttribute("totalDiscount",findTotalSummary.get(0)[0]);
+			model.addAttribute("totalSubtotal",findTotalSummary.get(0)[1]);
+			model.addAttribute("totalGrandtotal",findTotalSummary.get(0)[2]);
+
+			return"user/grandioseDaysDetails";
+		}
+		
+		System.out.println("grandiose report");
+		return"user/report";
+	}
+	
+	
+}

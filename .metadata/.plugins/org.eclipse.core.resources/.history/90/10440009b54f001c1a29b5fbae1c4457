@@ -1,0 +1,75 @@
+package com.exam.hotel.controller;
+
+import java.sql.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.exam.hotel.repository.BookingRepository;
+import com.exam.hotel.repository.CheckInRepository;
+import com.exam.hotel.repository.CheckOutTransactionRepository;
+import com.exam.hotel.repository.RoomsRepository;
+
+@Controller
+@RequestMapping("user")
+public class UserController {
+	@Autowired
+	BookingRepository bookingrep;
+	@Autowired
+	CheckInRepository checkinrep;
+	@Autowired
+	CheckOutTransactionRepository checkouttrarep;
+	@Autowired
+	RoomsRepository roomsrep;
+	
+
+	@PostMapping("/dologin")
+	public String loginprocess() {
+
+		return "/user/user-dashboard";
+	}
+
+	@RequestMapping("/dashboard")
+	public String userDashboard(Model model) {
+		
+		//----- Current Date in sql format---------
+		long millis = System.currentTimeMillis();
+		Date todaysDate = new Date(millis);
+		
+		//----- Todays Arrival-------
+		model.addAttribute("todaysArrival",bookingrep.findByCheckind(todaysDate).size()) ;
+	
+		//----- Total Booking--------
+		model.addAttribute("totalBooking",bookingrep.findAll().size()) ;
+		
+		//---- Total Occupied-------
+		int totalOccupaied = checkinrep.findAll().size();
+		model.addAttribute("totalOccupaid",totalOccupaied);
+		
+		//---- Todays Total Check-in----.
+		model.addAttribute("totalCheckin",checkinrep.findByGuestCheckin(todaysDate).size());
+		
+		//---- Todays Total Departure -----
+		model.addAttribute("totalDeparture",checkinrep.findByGuestCheckout(todaysDate).size());
+		
+		//---- Total Guest --------
+		model.addAttribute("totalGuest",checkinrep.findTotalGuest());
+		
+		//---- Total Check-out----
+		model.addAttribute("totalCheckout",checkouttrarep.findByTransactionDate(todaysDate).size());
+		
+		//---- Total Vacant ------
+		model.addAttribute("totalVacant",roomsrep.findByRoomStatus("Vacant").size());
+		
+		//---- Total Occupancy-------
+		long count = roomsrep.count();
+		
+		return "/user/user-dashboard";
+		
+		
+	}
+
+}
